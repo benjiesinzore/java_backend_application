@@ -18,7 +18,7 @@ public class SecurityController {
     @GetMapping("getHelloBenjie")
     public ResEntity getGreetings(){
         ResEntity model = new ResEntity();
-        model.setResMes(testService.getGreetings());
+        model.setResMes(testService.newExec());
         return model;
     }
 

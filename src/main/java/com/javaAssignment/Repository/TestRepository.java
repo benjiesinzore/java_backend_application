@@ -10,8 +10,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TestRepository extends JpaRepository<ResEntity, String> {
 
-//    @Procedure(procedureName = "benjamiin")
-    @Query(value = "CALL benjamiin(@resMes, :name)", nativeQuery = true)
-    String getGreetings(String name);
+
+//    @Query(value = "CALL benjamiin(@resMes, :name)", nativeQuery = true)
+//    String getGreetings(String name);
+
+    @Procedure(procedureName = "benjamiin")
+    String getGreetings(String valIn);
 
 }
