@@ -1,10 +1,12 @@
 package com.javaAssignment.Controller;
 
-import com.javaAssignment.Entities.ResEntity;
+import com.javaAssignment.Entity.ResEntity;
 import com.javaAssignment.Services.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController()
@@ -16,10 +18,13 @@ public class SecurityController {
 
 
     @GetMapping("getHelloBenjie")
-    public ResEntity getGreetings(){
+    public List<String> getGreetings(){
+        List<String> ss = new ArrayList<>();
         ResEntity model = new ResEntity();
-        model.setResMes(testService.newExec());
-        return model;
+
+        ss = testService.getGreetings();
+//        model.setResMes();
+        return ss;
     }
 
 }

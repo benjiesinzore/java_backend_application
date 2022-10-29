@@ -1,4 +1,4 @@
-package com.javaAssignment.Entities;
+package com.javaAssignment.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +11,5 @@ import javax.persistence.*;
 public class ResEntity {
 
     @Id
-    int ID;
     String resMes;
 }

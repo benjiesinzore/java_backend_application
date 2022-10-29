@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Transactional
@@ -23,14 +25,16 @@ public class TestService {
     public TestService() {
     }
 
-    public String getGreetings(){
+    public List<String> getGreetings(){
 
-        String ss, name = "Benjamin Sinzore";
+        List<String> ss = new ArrayList<>();
+
+        String name = "Benjamin Sinzore";
 
         try {
-            ss = repository.getGreetings(name);
+            ss = repository.inAndOut(name, name);
         } catch (Exception ee){
-            ss = ee.getMessage();
+            //
         }
         return ss;
     }
@@ -43,7 +47,6 @@ public class TestService {
         query.registerStoredProcedureParameter("resMes", String.class, ParameterMode.OUT);
         query.registerStoredProcedureParameter("valIn", String.class, ParameterMode.IN);
         query.setParameter("valIn", "Benjamin Sinzore");
-
 
         query.execute();
         ss = (String) query.getOutputParameterValue("resMes");
