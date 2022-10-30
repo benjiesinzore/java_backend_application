@@ -1,0 +1,14 @@
+package com.javaAssignment.controllers.security;
+
+import com.javaAssignment.services.security.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController()
+@RequestMapping("BankingTest")
+public class SecurityController {
+
+    @Autowired
+    SecurityService service;
+}
