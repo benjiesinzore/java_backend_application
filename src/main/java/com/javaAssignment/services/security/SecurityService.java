@@ -20,13 +20,13 @@ public class SecurityService {
 
     public String customerLogin(){
         String ss;
-        ss = repository.customerRegistration(123,"","","");
+        ss = repository.customerLogin("100100123","");
         return ss;
     }
 
     public String customerRequestPinChange(){
         String ss;
-        ss = repository.customerRegistration(123,"","","");
+        ss = repository.customerRequestPinChange(123,"","","");
         return ss;
     }
 }

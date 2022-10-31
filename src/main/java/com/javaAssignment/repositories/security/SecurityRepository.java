@@ -25,9 +25,29 @@ public interface SecurityRepository extends JpaRepository<MyEntity, Integer> {
             String userEmailAddressIN
     );
 
-    @Procedure
-    public String customerLogin();
+    @Procedure(procedureName = "sp_CustomerLogin")
+    String customerLogin(
 
-    @Procedure
-    public String customerRequestPinChange();
+            @Param("accountNumberIN")
+            String accountNumberIN,
+
+            @Param("userPasswordIN")
+            String userPasswordIN
+    );
+
+    @Procedure(procedureName = "sp_CustomerLogin")
+    String customerRequestPinChange(
+
+            @Param("userIDIN")
+            int userIDIN,
+
+            @Param("userNameIN")
+            String userNameIN,
+
+            @Param("userPasswordIN")
+            String userPasswordIN,
+
+            @Param("userEmailAddressIN")
+            String userEmailAddressIN
+    );
 }
