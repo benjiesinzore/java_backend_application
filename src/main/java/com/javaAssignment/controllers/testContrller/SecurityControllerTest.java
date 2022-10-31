@@ -10,14 +10,14 @@ import java.util.List;
 
 
 @RestController()
-@RequestMapping("JavaBackend")
+@RequestMapping("/JavaBackend")
 public class SecurityControllerTest {
 
     @Autowired
     TestService testService;
 
 
-    @GetMapping("getHelloBenjie")
+    @GetMapping("/getHelloBenjie")
     @ResponseStatus(HttpStatus.OK)
     public List<String> getHelloBenjie(){
         List<String> ss = new ArrayList<>();

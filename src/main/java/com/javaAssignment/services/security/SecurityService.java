@@ -11,4 +11,22 @@ public class SecurityService {
 
     @Autowired
     SecurityRepository repository;
+
+    public String customerRegistration(){
+        String ss;
+        ss = repository.customerRegistration(123,"","","");
+        return ss;
+    }
+
+    public String customerLogin(){
+        String ss;
+        ss = repository.customerRegistration(123,"","","");
+        return ss;
+    }
+
+    public String customerRequestPinChange(){
+        String ss;
+        ss = repository.customerRegistration(123,"","","");
+        return ss;
+    }
 }
