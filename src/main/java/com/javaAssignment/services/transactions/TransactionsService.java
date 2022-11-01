@@ -40,7 +40,6 @@ public class TransactionsService {
         return ss;
     }
 
-
     public String customerRequestDeactivateAccount(){
         String ss;
         ss = repository.customerRequestDeactivateAccount(11);
