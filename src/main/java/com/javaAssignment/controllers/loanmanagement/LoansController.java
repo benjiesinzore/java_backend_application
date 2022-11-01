@@ -28,13 +28,6 @@ public class LoansController {
     }
 
 
-    @PostMapping("/CheckLoanLimit")
-    public String checkLoanLimit(){
-
-        return "ss";
-    }
-
-
     @PostMapping("/CheckLoanHistory")
     public String checkLoanHistory(){
 
