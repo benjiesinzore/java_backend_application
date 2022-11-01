@@ -36,4 +36,11 @@ public class AdministratorService {
         return ss;
     }
 
+    public String validateCustomerAccount(){
+        String ss;
+        String acc = "";
+        ss = repository.validateCustomerAccount(acc);
+        return ss;
+    }
+
 }

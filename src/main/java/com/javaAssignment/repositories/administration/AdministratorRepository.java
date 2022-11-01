@@ -44,8 +44,12 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
     @Procedure(procedureName = "sp_CustomerValidationReminder")
     List<String> accValidationReminder();
 
-    @Procedure()
-    public String validateCustomerAccount();
+    @Procedure(procedureName = "sp_ApproveCustomer")
+    public String validateCustomerAccount(
+
+            @Param("accountNumberIN")
+            String accountNumberIN
+    );
 
     @Procedure()
     public String blockCustomerAccount();

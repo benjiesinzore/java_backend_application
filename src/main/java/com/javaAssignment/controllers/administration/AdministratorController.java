@@ -48,7 +48,9 @@ public class AdministratorController {
     @PostMapping("/ValidateCustomerAccount")
     public String validateCustomerAccount(){
 
-        return "ss";
+        String ss;
+        ss = service.validateCustomerAccount();
+        return ss;
     }
 
     @PostMapping("/BlockCustomerAccount")
