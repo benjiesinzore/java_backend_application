@@ -42,14 +42,14 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
     List<String> accValidationReminder();
 
     @Procedure(procedureName = "sp_ApproveCustomer")
-    public String validateCustomerAccount(
+    String validateCustomerAccount(
 
             @Param("accountNumberIN")
             String accountNumberIN
     );
 
     @Procedure(procedureName = "sp_BlockCustomerAcc")
-    public String blockCustomerAccount(
+    String blockCustomerAccount(
 
             @Param("accountNumberIN")
             String accountNumberIN,
@@ -67,5 +67,5 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
 
 
     @Procedure()
-    public String validateLoan();
+    String validateLoan();
 }

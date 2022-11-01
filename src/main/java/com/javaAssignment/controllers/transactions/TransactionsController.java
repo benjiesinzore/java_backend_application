@@ -17,36 +17,41 @@ public class TransactionsController {
     @PostMapping("/CashWithdraw")
     public String cashWithdraw(){
 
-        return "ss";
+        String ss;
+        ss = service.cashWithdraw();
+        return ss;
     }
 
     @PostMapping("/CashDeposit")
     public String cashDeposit(){
 
-        return "ss";
+        String ss;
+        ss = service.cashDeposit();
+        return ss;
     }
 
     @PostMapping("/CashTransfer")
     public String cashTransfer(){
 
-        return "ss";
+        String ss;
+        ss = service.cashTransfer();
+        return ss;
     }
 
     @PostMapping("/CheckAvailableBalance")
     public String checkAvailableBalance(){
 
-        return "ss";
+        String ss;
+        ss = service.checkAvailableBalance();
+        return ss;
     }
 
     @PostMapping("/CustomerRequestDeactivateAccount")
     public String customerRequestDeactivateAccount(){
 
-        return "ss";
+        String ss;
+        ss = service.customerRequestDeactivateAccount();
+        return ss;
     }
 
-    @PostMapping("/Mimistatement")
-    public String mimistatement(){
-
-        return "ss";
-    }
 }
