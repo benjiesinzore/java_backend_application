@@ -43,4 +43,12 @@ public class AdministratorService {
         return ss;
     }
 
+
+    public String blockCustomerAccount(){
+        String ss;
+        String acc = "";
+        ss = repository.blockCustomerAccount("", "", "", "");
+        return ss;
+    }
+
 }

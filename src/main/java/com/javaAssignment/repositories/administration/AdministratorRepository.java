@@ -5,9 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.SqlResultSetMapping;
-import javax.persistence.SqlResultSetMappings;
 import java.util.List;
 
 @Repository
@@ -51,11 +48,23 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
             String accountNumberIN
     );
 
-    @Procedure()
-    public String blockCustomerAccount();
+    @Procedure(procedureName = "sp_BlockCustomerAcc")
+    public String blockCustomerAccount(
 
-    @Procedure()
-    public String freezeCustomerSavings();
+            @Param("accountNumberIN")
+            String accountNumberIN,
+
+            @Param("reasonForBlockIN")
+            String reasonForBlockIN,
+
+            @Param("dateInitiatedIN")
+            String dateInitiatedIN,
+
+            @Param("blockedByIN")
+            String blockedByIN
+
+    );
+
 
     @Procedure()
     public String validateLoan();

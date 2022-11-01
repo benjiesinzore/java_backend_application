@@ -1,4 +1,4 @@
-package com.javaAssignment.controllers.loanManagement;
+package com.javaAssignment.controllers.loanmanagement;
 
 import com.javaAssignment.services.loanManagement.LoansService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -56,13 +56,9 @@ public class AdministratorController {
     @PostMapping("/BlockCustomerAccount")
     public String blockCustomerAccount(){
 
-        return "ss";
-    }
-
-    @PostMapping("/FreezeCustomerSavings")
-    public String freezeCustomerSavings(){
-
-        return "ss";
+        String ss;
+        ss = service.blockCustomerAccount();
+        return ss;
     }
 
     @PostMapping("/ValidateLoan")

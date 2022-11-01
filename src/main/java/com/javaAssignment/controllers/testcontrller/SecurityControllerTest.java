@@ -1,13 +1,11 @@
-package com.javaAssignment.controllers.testContrller;
+package com.javaAssignment.controllers.testcontrller;
 
 
 import com.javaAssignment.services.testService.TestService;
-import com.javaAssignment.entity.MyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
