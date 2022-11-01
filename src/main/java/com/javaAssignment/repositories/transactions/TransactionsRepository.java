@@ -58,6 +58,4 @@ public interface TransactionsRepository extends JpaRepository<MyEntity, Integer>
             int accountNumberIN
     );
 
-    @Procedure
-    public String mimistatement();
 }
