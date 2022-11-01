@@ -4,7 +4,11 @@ import com.javaAssignment.services.administration.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController()
 @RequestMapping("/BankingTest")
@@ -16,13 +20,29 @@ public class AdministratorController {
     @PostMapping("/AdminCreateAccount")
     public String adminCreateAccount(){
 
-        return "ss";
+        String ss;
+        ss = service.adminCreateAccount();
+
+        return ss;
     }
 
-    @PostMapping("/AdminLogin")
+
+    @RequestMapping(value = "/AdminLogin", method = RequestMethod.POST)
     public String adminLogin(){
 
-        return "ss";
+        String ss;
+        ss = service.adminLogin();
+
+        return ss;
+    }
+
+
+    @PostMapping("/CustomerAccValidationReminder")
+    public List<String> customerAccValidationReminder(){
+
+        List<String> ss = new ArrayList<>();
+        ss = service.accValidationReminder();
+        return ss;
     }
 
     @PostMapping("/ValidateCustomerAccount")

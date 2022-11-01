@@ -35,11 +35,11 @@ public interface SecurityRepository extends JpaRepository<MyEntity, Integer> {
             String userPasswordIN
     );
 
-    @Procedure(procedureName = "sp_CustomerLogin")
+    @Procedure(procedureName = "sp_Request_PIN_Change")
     String customerRequestPinChange(
 
-            @Param("userIDIN")
-            int userIDIN,
+            @Param("accountNumberIN")
+            int accountNumberIN,
 
             @Param("userNameIN")
             String userNameIN,
@@ -47,7 +47,7 @@ public interface SecurityRepository extends JpaRepository<MyEntity, Integer> {
             @Param("userPasswordIN")
             String userPasswordIN,
 
-            @Param("userEmailAddressIN")
-            String userEmailAddressIN
+            @Param("requestDateIN")
+            String requestDateIN
     );
 }
