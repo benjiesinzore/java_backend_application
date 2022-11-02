@@ -27,12 +27,15 @@ public class SecurityService {
             res = repository.customerRegistration(123,"","","");
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
             response.setStatus(500);
-            response.setError(ee.getMessage());
+            response.setError(error);
             response.setMessage("Internal Server Error.");
+
         }
 
-        log.error("Hello Benjamin");
+
         return response;
     }
 
@@ -42,8 +45,10 @@ public class SecurityService {
             res = repository.customerLogin("100100123","");
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
             response.setStatus(500);
-            response.setError(ee.getMessage());
+            response.setError(error);
             response.setMessage("Internal Server Error.");
         }
 
@@ -57,8 +62,10 @@ public class SecurityService {
                     "");
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
             response.setStatus(500);
-            response.setError(ee.getMessage());
+            response.setError(error);
             response.setMessage("Internal Server Error.");
         }
 

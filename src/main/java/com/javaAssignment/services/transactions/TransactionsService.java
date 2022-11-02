@@ -1,68 +1,111 @@
 package com.javaAssignment.services.transactions;
 
+import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.transactions.TransactionsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Transactional
 @Service
 public class TransactionsService {
 
     @Autowired
-    TransactionsRepository repository;
-
-
-    public String cashDeposit(){
-        String ss;
-        ss = repository.cashDeposit(11,11);
-        return ss;
+    private final TransactionsRepository repository;
+    public TransactionsService(TransactionsRepository repository) {
+        this.repository = repository;
     }
 
+    private final GlobalResponse response = new GlobalResponse();
 
-    public String cashWithdraw(){
-        String ss = "";
+
+    public GlobalResponse cashDeposit(){
+        String res = "";
         try {
-            ss = repository.cashWithdraw(11,11);
+            res = repository.cashDeposit(11,11);
+            response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
-        return ss;
+        return response;
     }
 
 
-    public String cashTransfer(){
-        String ss = "";
+    public GlobalResponse cashWithdraw(){
+        String res = "";
         try {
-            ss = repository.cashTransfer(11,11, 11);
+            res = repository.cashWithdraw(11,11);
+            response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
-        return ss;
+        return response;
     }
 
 
-    public String checkAvailableBalance(){
-        String ss = "";
+    public GlobalResponse cashTransfer(){
+        String res = "";
         try {
-            ss = repository.checkAvailableBalance(11);
+            res = repository.cashTransfer(11,11, 11);
+            response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
-        return ss;
+        return response;
     }
 
-    public String customerRequestDeactivateAccount(){
-        String ss = "";
+
+    public GlobalResponse checkAvailableBalance(){
+        String res = "";
         try {
-            ss = repository.customerRequestDeactivateAccount(11);
+            res = repository.checkAvailableBalance(11);
+            response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
-        return ss;
+        return response;
+    }
+
+    public GlobalResponse customerRequestDeactivateAccount(){
+        String res = "";
+        try {
+            res = repository.customerRequestDeactivateAccount(11);
+            response.setMessage(res);
+        } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
+
+        }
+
+        return response;
     }
 }

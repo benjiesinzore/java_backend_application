@@ -27,13 +27,7 @@ public class SecurityController {
     @PostMapping("/CustomerRegistration")
     public GlobalResponse customerRegistration(){
 
-        logger.trace("customerRegistration");
-        logger.error("Hello Benjamin");
         response = service.customerRegistration();
-
-
-
-
         return response;
     }
 

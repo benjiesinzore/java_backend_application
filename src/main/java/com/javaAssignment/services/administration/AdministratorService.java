@@ -2,6 +2,7 @@ package com.javaAssignment.services.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Transactional
 @Service
 public class AdministratorService {
@@ -29,6 +31,11 @@ public class AdministratorService {
                     33, "", "", "");
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
@@ -42,6 +49,11 @@ public class AdministratorService {
             res = repository.adminLogin("22", "");
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
@@ -53,6 +65,11 @@ public class AdministratorService {
         try {
             ss = repository.accValidationReminder();
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
@@ -66,6 +83,11 @@ public class AdministratorService {
             res = repository.validateCustomerAccount(acc);
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 
@@ -81,6 +103,11 @@ public class AdministratorService {
                     "");
             response.setMessage(res);
         } catch (Exception ee){
+            String error = ee.getMessage();
+            log.error(error);
+            response.setStatus(500);
+            response.setError(error);
+            response.setMessage("Internal Server Error.");
 
         }
 

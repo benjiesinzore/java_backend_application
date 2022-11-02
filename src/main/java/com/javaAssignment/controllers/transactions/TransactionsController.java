@@ -1,5 +1,6 @@
 package com.javaAssignment.controllers.transactions;
 
+import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.transactions.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,46 +13,42 @@ public class TransactionsController {
 
     @Autowired
     TransactionsService service;
+    private GlobalResponse response = new GlobalResponse();
 
 
     @PostMapping("/CashWithdraw")
-    public String cashWithdraw(){
+    public GlobalResponse cashWithdraw(){
 
-        String ss;
-        ss = service.cashWithdraw();
-        return ss;
+        response = service.cashWithdraw();
+        return response;
     }
 
     @PostMapping("/CashDeposit")
-    public String cashDeposit(){
+    public GlobalResponse cashDeposit(){
 
-        String ss;
-        ss = service.cashDeposit();
-        return ss;
+        response = service.cashDeposit();
+        return response;
     }
 
     @PostMapping("/CashTransfer")
-    public String cashTransfer(){
+    public GlobalResponse cashTransfer(){
 
-        String ss;
-        ss = service.cashTransfer();
-        return ss;
+        response = service.cashTransfer();
+        return response;
     }
 
     @PostMapping("/CheckAvailableBalance")
-    public String checkAvailableBalance(){
+    public GlobalResponse checkAvailableBalance(){
 
-        String ss;
-        ss = service.checkAvailableBalance();
-        return ss;
+        response = service.checkAvailableBalance();
+        return response;
     }
 
     @PostMapping("/CustomerRequestDeactivateAccount")
-    public String customerRequestDeactivateAccount(){
+    public GlobalResponse customerRequestDeactivateAccount(){
 
-        String ss;
-        ss = service.customerRequestDeactivateAccount();
-        return ss;
+        response = service.customerRequestDeactivateAccount();
+        return response;
     }
 
 }
