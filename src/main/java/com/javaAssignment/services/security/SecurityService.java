@@ -2,10 +2,12 @@ package com.javaAssignment.services.security;
 
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.security.SecurityRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Transactional
 @Service
 public class SecurityService {
@@ -30,6 +32,7 @@ public class SecurityService {
             response.setMessage("Internal Server Error.");
         }
 
+        log.error("Hello Benjamin");
         return response;
     }
 
