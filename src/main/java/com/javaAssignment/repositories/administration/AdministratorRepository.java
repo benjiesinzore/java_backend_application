@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface AdministratorRepository extends JpaRepository<MyEntity, Integer> {
 
-
     @Procedure(procedureName = "sp_BankEmployeeRegistrationDetails")
     String adminCreateAccount(
 
@@ -66,6 +65,4 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
     );
 
 
-    @Procedure()
-    String validateLoan();
 }

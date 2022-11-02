@@ -1,5 +1,6 @@
 package com.javaAssignment.services.administration;
 
+import com.javaAssignment.models.responses.AccValidationRemResp;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +62,8 @@ public class AdministratorService {
     }
 
     public List<String> accValidationReminder(){
+
+
         List<String> ss = new ArrayList<>();
         try {
             ss = repository.accValidationReminder();
