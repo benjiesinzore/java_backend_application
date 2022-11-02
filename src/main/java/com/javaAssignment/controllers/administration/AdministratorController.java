@@ -1,5 +1,6 @@
 package com.javaAssignment.controllers.administration;
 
+import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.administration.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,25 +16,29 @@ import java.util.List;
 public class AdministratorController {
 
     @Autowired
-    AdministratorService service;
+    private final AdministratorService service;
+    public AdministratorController(AdministratorService service) {
+        this.service = service;
+    }
+    private GlobalResponse response = new GlobalResponse();
 
     @PostMapping("/AdminCreateAccount")
-    public String adminCreateAccount(){
+    public GlobalResponse adminCreateAccount(){
 
         String ss;
-        ss = service.adminCreateAccount();
+        response = service.adminCreateAccount();
 
-        return ss;
+        return response;
     }
 
 
     @RequestMapping(value = "/AdminLogin", method = RequestMethod.POST)
-    public String adminLogin(){
+    public GlobalResponse adminLogin(){
 
         String ss;
-        ss = service.adminLogin();
+        response = service.adminLogin();
 
-        return ss;
+        return response;
     }
 
 
@@ -46,24 +51,19 @@ public class AdministratorController {
     }
 
     @PostMapping("/ValidateCustomerAccount")
-    public String validateCustomerAccount(){
+    public GlobalResponse validateCustomerAccount(){
 
         String ss;
-        ss = service.validateCustomerAccount();
-        return ss;
+        response = service.validateCustomerAccount();
+        return response;
     }
 
     @PostMapping("/BlockCustomerAccount")
-    public String blockCustomerAccount(){
+    public GlobalResponse blockCustomerAccount(){
 
         String ss;
-        ss = service.blockCustomerAccount();
-        return ss;
+        response = service.blockCustomerAccount();
+        return response;
     }
 
-    @PostMapping("/ValidateLoan")
-    public String validateLoan(){
-
-        return "ss";
-    }
 }

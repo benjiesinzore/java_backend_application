@@ -1,5 +1,6 @@
 package com.javaAssignment.controllers.security;
 
+import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.security.SecurityService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -15,34 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecurityController {
 
     @Autowired
-    SecurityService service;
+    private final SecurityService service;
+    public SecurityController(SecurityService service) {
+        this.service = service;
+    }
+    private GlobalResponse response = new GlobalResponse();
+    private final Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
-    Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
     @PostMapping("/CustomerRegistration")
-    public String customerRegistration(){
+    public GlobalResponse customerRegistration(){
 
-        String ss;
-        ss = service.customerRegistration();
+        response = service.customerRegistration();
         logger.trace("customerRegistration");
 
         log.debug("Hello Benjamin");
-        return ss;
+        return response;
     }
 
     @PostMapping("/CustomerLogin")
-    public String customerLogin(){
+    public GlobalResponse customerLogin(){
 
-        String ss;
-        ss = service.customerLogin();
-        return ss;
+        response = service.customerLogin();
+        return response;
     }
 
     @PostMapping("/CustomerRequestPinChange")
-    public String customerRequestPinChange(){
+    public GlobalResponse customerRequestPinChange(){
 
-        String ss;
-        ss = service.customerRequestPinChange();
-        return ss;
+        response = service.customerRequestPinChange();
+        return response;
     }
 }

@@ -21,28 +21,48 @@ public class TransactionsService {
 
 
     public String cashWithdraw(){
-        String ss;
-        ss = repository.cashWithdraw(11,11);
+        String ss = "";
+        try {
+            ss = repository.cashWithdraw(11,11);
+        } catch (Exception ee){
+
+        }
+
         return ss;
     }
 
 
     public String cashTransfer(){
-        String ss;
-        ss = repository.cashTransfer(11,11, 11);
+        String ss = "";
+        try {
+            ss = repository.cashTransfer(11,11, 11);
+        } catch (Exception ee){
+
+        }
+
         return ss;
     }
 
 
     public String checkAvailableBalance(){
-        String ss;
-        ss = repository.checkAvailableBalance(11);
+        String ss = "";
+        try {
+            ss = repository.checkAvailableBalance(11);
+        } catch (Exception ee){
+
+        }
+
         return ss;
     }
 
     public String customerRequestDeactivateAccount(){
-        String ss;
-        ss = repository.customerRequestDeactivateAccount(11);
+        String ss = "";
+        try {
+            ss = repository.customerRequestDeactivateAccount(11);
+        } catch (Exception ee){
+
+        }
+
         return ss;
     }
 }

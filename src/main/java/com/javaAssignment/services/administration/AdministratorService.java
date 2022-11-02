@@ -1,5 +1,6 @@
 package com.javaAssignment.services.administration;
 
+import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,42 +14,77 @@ import java.util.List;
 public class AdministratorService {
 
     @Autowired
-    AdministratorRepository repository;
+    private final AdministratorRepository repository;
+    public AdministratorService(AdministratorRepository repository) {
+        this.repository = repository;
+    }
+
+    private final GlobalResponse response = new GlobalResponse();
 
 
-    public String adminCreateAccount(){
-        String ss;
-        ss = repository.adminCreateAccount(
-                33, "", "", "");
-        return ss;
+    public GlobalResponse adminCreateAccount(){
+        String res;
+        try {
+            res = repository.adminCreateAccount(
+                    33, "", "", "");
+            response.setMessage(res);
+        } catch (Exception ee){
+
+        }
+
+        return response;
     }
 
 
-    public String adminLogin(){
-        String ss;
-        ss = repository.adminLogin("22", "");
-        return ss;
+    public GlobalResponse adminLogin(){
+        String res;
+        try {
+            res = repository.adminLogin("22", "");
+            response.setMessage(res);
+        } catch (Exception ee){
+
+        }
+
+        return response;
     }
 
     public List<String> accValidationReminder(){
         List<String> ss = new ArrayList<>();
-        ss = repository.accValidationReminder();
+        try {
+            ss = repository.accValidationReminder();
+        } catch (Exception ee){
+
+        }
+
         return ss;
     }
 
-    public String validateCustomerAccount(){
-        String ss;
+    public GlobalResponse validateCustomerAccount(){
+        String res;
         String acc = "";
-        ss = repository.validateCustomerAccount(acc);
-        return ss;
+        try {
+            res = repository.validateCustomerAccount(acc);
+            response.setMessage(res);
+        } catch (Exception ee){
+
+        }
+
+        return response;
     }
 
 
-    public String blockCustomerAccount(){
-        String ss;
+    public GlobalResponse blockCustomerAccount(){
+        String res;
         String acc = "";
-        ss = repository.blockCustomerAccount("", "", "", "");
-        return ss;
+        try {
+            res = repository.blockCustomerAccount("", "", "",
+                    "");
+            response.setMessage(res);
+        } catch (Exception ee){
+
+        }
+
+        return response;
     }
 
 }
