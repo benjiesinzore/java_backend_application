@@ -1,17 +1,16 @@
 package com.javaAssignment.services.administration;
 
-import com.javaAssignment.models.responses.AccValidationRemResp;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+
 @Transactional
 @Service
 public class AdministratorService {
@@ -23,17 +22,21 @@ public class AdministratorService {
     }
 
     private final GlobalResponse response = new GlobalResponse();
+    private final Logger logger = LoggerFactory.getLogger(AdministratorService.class);
 
 
     public GlobalResponse adminCreateAccount(){
         String res;
         try {
+
             res = repository.adminCreateAccount(
                     33, "", "", "");
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+
+            logger.error(error);
+            logger.info("Create Admin Endpoint : Administration Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -51,7 +54,8 @@ public class AdministratorService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Admin Login Endpoint : Administration Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -69,7 +73,8 @@ public class AdministratorService {
             ss = repository.accValidationReminder();
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Customer Validation Reminder Endpoint : Administration Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -87,7 +92,8 @@ public class AdministratorService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Validate Customer Account Endpoint : Administration Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -107,7 +113,8 @@ public class AdministratorService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Block Customer Account Endpoint : Administration Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
