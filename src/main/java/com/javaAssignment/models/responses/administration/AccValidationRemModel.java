@@ -1,7 +1,6 @@
 package com.javaAssignment.models.responses.administration;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.NamedNativeQuery;
 
 import javax.persistence.*;
@@ -11,36 +10,38 @@ import javax.persistence.*;
         name="myMapping",
         classes={
                 @ConstructorResult(
-                        targetClass=AccValidationRemModel.class,
+                        targetClass=AccValidationRemModelData.class,
                         columns={
-                                @ColumnResult(name="accountNumber"),
-                                @ColumnResult(name="userName"),
-                                @ColumnResult(name="userEmailAddress"),
+                                @ColumnResult(name="accountNumber", type = Integer.class),
+                                @ColumnResult(name="userName", type = String.class),
+                                @ColumnResult(name="userEmailAddress", type = String.class),
                         }
                 )
         }
 )
-@NamedStoredProcedureQuery(name="sp_CustomerValidationReminder",
-        procedureName = "sp_CustomerValidationReminder",resultSetMappings = "myMapping"
-                )
+@NamedNativeQuery(name="AccValidationRemModel.getTestSqlMapping",
+        query="    SELECT\n" +
+                "    \n" +
+                "    accountNumber,\n" +
+                "\tuserName,\n" +
+                "\tuserEmailAddress \n" +
+                "    \n" +
+                "    FROM t_CustomerRegistrationDetails WHERE status = 'Pending Approval'; ",
+        resultSetMapping="myMapping",
+        resultClass = AccValidationRemModelData.class)
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AccValidationRemModel {
 
-    public AccValidationRemModel() {
-    }
-
-    public AccValidationRemModel(int accountNumber, String userName, String userEmailAddress) {
-        this.accountNumber = accountNumber;
-        this.userName = userName;
-        this.userEmailAddress = userEmailAddress;
-    }
-
-//    @Column(name = "accountNumber")
+    @Column(name = "accountNumber")
     @Id
     public int accountNumber;
-//    @Column(name = "userName")
+    @Column(name = "userName")
     public String userName;
-//    @Column(name = "userEmailAddress")
+    @Column(name = "userEmailAddress")
     public String userEmailAddress;
+
 
 }

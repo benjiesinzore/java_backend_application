@@ -2,6 +2,7 @@ package com.javaAssignment.repositories.administration;
 
 import com.javaAssignment.entity.MyEntity;
 import com.javaAssignment.models.responses.administration.AccValidationRemModel;
+import com.javaAssignment.models.responses.administration.AccValidationRemModelData;
 import org.hibernate.annotations.Entity;
 import org.hibernate.annotations.NamedNativeQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -72,9 +73,7 @@ public interface AdministratorRepository extends JpaRepository<AccValidationRemM
 
 
 
-
-    @Procedure(name = "sp_CustomerValidationReminder")
-    List<?> getTestSqlMapping();
+    List<AccValidationRemModelData> getTestSqlMapping();
 
 
 }

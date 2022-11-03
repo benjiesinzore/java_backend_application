@@ -2,6 +2,7 @@ package com.javaAssignment.services.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.models.responses.administration.AccValidationRemModel;
+import com.javaAssignment.models.responses.administration.AccValidationRemModelData;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,11 +135,11 @@ public class AdministratorService {
 
 
 
-    public List<AccValidationRemModel> getTestSqlMapping(){
+    public List<AccValidationRemModelData> getTestSqlMapping(){
 
-        List<AccValidationRemModel> data = new ArrayList<>();
+        List<AccValidationRemModelData> data = new ArrayList<>();
         try {
-            data = (List<AccValidationRemModel>) repository.getTestSqlMapping();
+            data = repository.getTestSqlMapping();
         } catch (Exception ee){
 
             String error = ee.getMessage();
