@@ -69,24 +69,24 @@ public class AdministratorService {
         return response;
     }
 
-    public List<AccValidationRemModel> accValidationReminder(){
-
-
-        List<AccValidationRemModel> ss = new ArrayList<>();
-        try {
-            ss = (List<AccValidationRemModel>) repository.accValidationReminder();
-        } catch (Exception ee){
-            String error = ee.getMessage();
-            logger.error(error);
-            logger.info("Customer Validation Reminder Endpoint : Administration Controller");
-            response.setStatus(500);
-            response.setError(error);
-            response.setMessage("Internal Server Error.");
-
-        }
-
-        return ss;
-    }
+//    public List<AccValidationRemModel> accValidationReminder(){
+//
+//
+//        List<AccValidationRemModel> ss = new ArrayList<>();
+//        try {
+//            ss =  repository.accValidationReminder();
+//        } catch (Exception ee){
+//            String error = ee.getMessage();
+//            logger.error(error);
+//            logger.info("Customer Validation Reminder Endpoint : Administration Controller");
+//            response.setStatus(500);
+//            response.setError(error);
+//            response.setMessage("Internal Server Error.");
+//
+//        }
+//
+//        return ss;
+//    }
 
     public GlobalResponse validateCustomerAccount(){
         String res;
@@ -137,7 +137,7 @@ public class AdministratorService {
 
     public List<AccValidationRemModelData> getTestSqlMapping(){
 
-        List<AccValidationRemModelData> data = new ArrayList<>();
+        List<AccValidationRemModelData> data = new ArrayList<AccValidationRemModelData>();
         try {
             data = repository.getTestSqlMapping();
         } catch (Exception ee){

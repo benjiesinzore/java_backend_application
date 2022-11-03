@@ -44,13 +44,13 @@ public class AdministratorController {
     }
 
 
-    @PostMapping("/CustomerAccValidationReminder")
-    public List<AccValidationRemModel> customerAccValidationReminder(){
-
-        List<AccValidationRemModel> ss = new ArrayList<>();
-        ss = service.accValidationReminder();
-        return ss;
-    }
+//    @PostMapping("/CustomerAccValidationReminder")
+//    public List<AccValidationRemModel> customerAccValidationReminder(){
+//
+//        List<AccValidationRemModel> ss = new ArrayList<>();
+//        ss = service.accValidationReminder();
+//        return ss;
+//    }
 
     @PostMapping("/ValidateCustomerAccount")
     public GlobalResponse validateCustomerAccount(){
@@ -72,7 +72,7 @@ public class AdministratorController {
     @PostMapping("/TestSqlMapping")
     public List<AccValidationRemModelData> getTestSqlMapping(){
 
-        List<AccValidationRemModelData> data = new ArrayList<>();
+        List<AccValidationRemModelData> data = new ArrayList<AccValidationRemModelData>();
         data = service.getTestSqlMapping();
         return data;
     }
