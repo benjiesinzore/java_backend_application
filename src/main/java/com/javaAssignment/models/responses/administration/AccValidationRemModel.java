@@ -30,7 +30,6 @@ import javax.persistence.*;
         resultSetMapping="myMapping",
         resultClass = AccValidationRemModelData.class)
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccValidationRemModel {

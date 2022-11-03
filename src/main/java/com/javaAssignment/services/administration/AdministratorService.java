@@ -1,7 +1,6 @@
 package com.javaAssignment.services.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
-import com.javaAssignment.models.responses.administration.AccValidationRemModel;
 import com.javaAssignment.models.responses.administration.AccValidationRemModelData;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.slf4j.Logger;
@@ -9,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,25 +66,6 @@ public class AdministratorService {
         return response;
     }
 
-//    public List<AccValidationRemModel> accValidationReminder(){
-//
-//
-//        List<AccValidationRemModel> ss = new ArrayList<>();
-//        try {
-//            ss =  repository.accValidationReminder();
-//        } catch (Exception ee){
-//            String error = ee.getMessage();
-//            logger.error(error);
-//            logger.info("Customer Validation Reminder Endpoint : Administration Controller");
-//            response.setStatus(500);
-//            response.setError(error);
-//            response.setMessage("Internal Server Error.");
-//
-//        }
-//
-//        return ss;
-//    }
-
     public GlobalResponse validateCustomerAccount(){
         String res;
         String acc = "";
@@ -127,19 +105,12 @@ public class AdministratorService {
         return response;
     }
 
-
-
-
-
-
-
-
-
     public List<AccValidationRemModelData> getTestSqlMapping(){
 
-        List<AccValidationRemModelData> data = new ArrayList<AccValidationRemModelData>();
+        List<AccValidationRemModelData> data = new ArrayList<>();
         try {
             data = repository.getTestSqlMapping();
+            logger.info(data.toString());
         } catch (Exception ee){
 
             String error = ee.getMessage();
