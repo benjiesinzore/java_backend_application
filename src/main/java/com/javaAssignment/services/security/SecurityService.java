@@ -2,12 +2,13 @@ package com.javaAssignment.services.security;
 
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.security.SecurityRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
+
 @Transactional
 @Service
 public class SecurityService {
@@ -20,6 +21,8 @@ public class SecurityService {
         this.repository = repository;
     }
 
+    private final Logger logger = LoggerFactory.getLogger(SecurityService.class);
+
     public GlobalResponse customerRegistration(){
         String res;
 
@@ -28,7 +31,8 @@ public class SecurityService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Customer Registration Endpoint : Security Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -46,7 +50,8 @@ public class SecurityService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Customer Login Endpoint : Security Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -63,7 +68,8 @@ public class SecurityService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Customer Request PIN Change Endpoint : Security Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");

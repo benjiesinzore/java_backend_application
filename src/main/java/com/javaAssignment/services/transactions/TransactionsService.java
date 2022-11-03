@@ -2,12 +2,12 @@ package com.javaAssignment.services.transactions;
 
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.transactions.TransactionsRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
 @Transactional
 @Service
 public class TransactionsService {
@@ -20,6 +20,8 @@ public class TransactionsService {
 
     private final GlobalResponse response = new GlobalResponse();
 
+    private final Logger logger = LoggerFactory.getLogger(TransactionsService.class);
+
 
     public GlobalResponse cashDeposit(){
         String res = "";
@@ -28,7 +30,8 @@ public class TransactionsService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Cash Deposit Endpoint : Transaction Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -46,7 +49,8 @@ public class TransactionsService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Cash Withdrawal Endpoint : Transaction Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -64,7 +68,8 @@ public class TransactionsService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Cash Transfer Endpoint : Transaction Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -82,7 +87,8 @@ public class TransactionsService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Cash Deposit Endpoint : Transaction Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
@@ -99,7 +105,8 @@ public class TransactionsService {
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
-            log.error(error);
+            logger.error(error);
+            logger.info("Cash Deposit Endpoint : Transaction Controller");
             response.setStatus(500);
             response.setError(error);
             response.setMessage("Internal Server Error.");
