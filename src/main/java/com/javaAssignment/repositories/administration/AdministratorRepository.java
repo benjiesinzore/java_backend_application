@@ -1,14 +1,19 @@
 package com.javaAssignment.repositories.administration;
 
 import com.javaAssignment.entity.MyEntity;
+import com.javaAssignment.models.responses.administration.AccValidationRemModel;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.NamedNativeQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Repository
-public interface AdministratorRepository extends JpaRepository<MyEntity, Integer> {
+public interface AdministratorRepository extends JpaRepository<AccValidationRemModel, Integer> {
 
     @Procedure(procedureName = "sp_BankEmployeeRegistrationDetails")
     String adminCreateAccount(
@@ -37,8 +42,9 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
     );
 
 
+    
     @Procedure(procedureName = "sp_CustomerValidationReminder")
-    List<String> accValidationReminder();
+    List<?> accValidationReminder();
 
     @Procedure(procedureName = "sp_ApproveCustomer")
     String validateCustomerAccount(
@@ -63,6 +69,12 @@ public interface AdministratorRepository extends JpaRepository<MyEntity, Integer
             String blockedByIN
 
     );
+
+
+
+
+    @Procedure(name = "sp_CustomerValidationReminder")
+    List<?> getTestSqlMapping();
 
 
 }

@@ -1,6 +1,7 @@
 package com.javaAssignment.controllers.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
+import com.javaAssignment.models.responses.administration.AccValidationRemModel;
 import com.javaAssignment.services.administration.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,9 +44,9 @@ public class AdministratorController {
 
 
     @PostMapping("/CustomerAccValidationReminder")
-    public List<String> customerAccValidationReminder(){
+    public List<AccValidationRemModel> customerAccValidationReminder(){
 
-        List<String> ss = new ArrayList<>();
+        List<AccValidationRemModel> ss = new ArrayList<>();
         ss = service.accValidationReminder();
         return ss;
     }
@@ -64,6 +65,15 @@ public class AdministratorController {
         String ss;
         response = service.blockCustomerAccount();
         return response;
+    }
+
+
+    @PostMapping("/TestSqlMapping")
+    public List<AccValidationRemModel> getTestSqlMapping(){
+
+        List<AccValidationRemModel> data = new ArrayList<>();
+        data = service.getTestSqlMapping();
+        return data;
     }
 
 }

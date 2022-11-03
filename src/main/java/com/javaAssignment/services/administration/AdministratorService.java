@@ -1,12 +1,15 @@
 package com.javaAssignment.services.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
+import com.javaAssignment.models.responses.administration.AccValidationRemModel;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,12 +68,12 @@ public class AdministratorService {
         return response;
     }
 
-    public List<String> accValidationReminder(){
+    public List<AccValidationRemModel> accValidationReminder(){
 
 
-        List<String> ss = new ArrayList<>();
+        List<AccValidationRemModel> ss = new ArrayList<>();
         try {
-            ss = repository.accValidationReminder();
+            ss = (List<AccValidationRemModel>) repository.accValidationReminder();
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -106,7 +109,6 @@ public class AdministratorService {
 
     public GlobalResponse blockCustomerAccount(){
         String res;
-        String acc = "";
         try {
             res = repository.blockCustomerAccount("", "", "",
                     "");
@@ -122,6 +124,28 @@ public class AdministratorService {
         }
 
         return response;
+    }
+
+
+
+
+
+
+
+
+
+    public List<AccValidationRemModel> getTestSqlMapping(){
+
+        List<AccValidationRemModel> data = new ArrayList<>();
+        try {
+            data = (List<AccValidationRemModel>) repository.getTestSqlMapping();
+        } catch (Exception ee){
+
+            String error = ee.getMessage();
+            logger.error(error);
+            logger.info("Test SQL Mapping Endpoint : Administration Controller");
+        }
+        return data;
     }
 
 }
