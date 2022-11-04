@@ -1,7 +1,9 @@
 package com.javaAssignment.services.administration;
 
-import com.javaAssignment.models.requestbody.administration.AdminCreateAccount;
-import com.javaAssignment.models.requestbody.administration.AdminLogin;
+import com.javaAssignment.models.requestbody.administration.AdminCreateAccountModel;
+import com.javaAssignment.models.requestbody.administration.AdminLoginModel;
+import com.javaAssignment.models.requestbody.administration.BlockCustomerAccountModel;
+import com.javaAssignment.models.requestbody.administration.ValidateCustomerAccModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.entity.AccValidationRemModelData;
 import com.javaAssignment.models.responses.administration.AccValidationRemResp;
@@ -29,7 +31,7 @@ public class AdministratorService {
     private final Logger logger = LoggerFactory.getLogger(AdministratorService.class);
 
 
-    public GlobalResponse adminCreateAccount(AdminCreateAccount model){
+    public GlobalResponse adminCreateAccount(AdminCreateAccountModel model){
 
         String password = model.getEmployeePassword();
         String confirmPassword = model.getConfirmPassword();
@@ -69,7 +71,7 @@ public class AdministratorService {
     }
 
 
-    public GlobalResponse adminLogin(AdminLogin model){
+    public GlobalResponse adminLogin(AdminLoginModel model){
         String res;
         try {
             res = repository.adminLogin(
@@ -89,11 +91,12 @@ public class AdministratorService {
         return response;
     }
 
-    public GlobalResponse validateCustomerAccount(){
+    public GlobalResponse validateCustomerAccount(ValidateCustomerAccModel model){
         String res;
-        String acc = "";
         try {
-            res = repository.validateCustomerAccount(acc);
+            res = repository.validateCustomerAccount(
+                    model.getAccountNumber()
+            );
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
@@ -109,11 +112,16 @@ public class AdministratorService {
     }
 
 
-    public GlobalResponse blockCustomerAccount(){
+    public GlobalResponse blockCustomerAccount(BlockCustomerAccountModel model){
         String res;
         try {
-            res = repository.blockCustomerAccount("", "", "",
-                    "");
+            res = repository.blockCustomerAccount(
+                    model.getAccountNumber(),
+                    model.getReasonForBlock(),
+                    model.getDateInitiated(),
+                    model.getBlockedBy()
+            );
+
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
@@ -128,12 +136,12 @@ public class AdministratorService {
         return response;
     }
 
-    public AccValidationRemResp getTestSqlMapping(){
+    public AccValidationRemResp accountValidationReinder(){
 
         AccValidationRemResp res = new AccValidationRemResp();
         List<AccValidationRemModelData> data;
         try {
-            data = repository.getTestSqlMapping();
+            data = repository.accountValidationReinder();
             res.setData(data);
         } catch (Exception ee){
 

@@ -5,19 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 @Getter
 @Setter
 @Data
-public class CustomerLogin {
+public class CustomerRequestPinChangeModel {
 
     @NotBlank(message = "User Account Number is required.")
     int userAccountNumber;
-    @NotBlank(message = "User password is required.")
+    @NotBlank(message = "User Name Number is required.")
+    String userName;
+    @NotBlank(message = "User Password is required.")
     String userPassword;
-
-    public CustomerLogin(int userAccountNumber, String userPassword) {
-        this.userAccountNumber = userAccountNumber;
-        this.userPassword = userPassword;
-    }
+    String requestDate = new Date().toString();
 }

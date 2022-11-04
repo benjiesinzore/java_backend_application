@@ -47,7 +47,7 @@ public interface AdministratorRepository extends JpaRepository<AccValidationRemM
     String validateCustomerAccount(
 
             @Param("accountNumberIN")
-            String accountNumberIN
+            int accountNumberIN
     );
 
     @Procedure(procedureName = "sp_BlockCustomerAcc")
@@ -67,9 +67,9 @@ public interface AdministratorRepository extends JpaRepository<AccValidationRemM
 
     );
 
-    @Procedure(name = "getTestSqlMapping")
+    @Procedure(name = "accountValidationReinder")
 
-    List<AccValidationRemModelData> getTestSqlMapping();
+    List<AccValidationRemModelData> accountValidationReinder();
 
 
 }

@@ -3,6 +3,7 @@ package com.javaAssignment.entity;
 import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigInteger;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 public class AccValidationRemModelData {
 
     @Id
-    private int accountNumber;
+    private BigInteger accountNumber;
     private String userName;
     private String userEmailAddress;
 

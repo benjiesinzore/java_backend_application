@@ -1,11 +1,15 @@
 package com.javaAssignment.controllers.transactions;
 
+import com.javaAssignment.models.requestbody.transactions.CashDepositModel;
+import com.javaAssignment.models.requestbody.transactions.CashTransferModel;
+import com.javaAssignment.models.requestbody.transactions.CashWithdrawModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.transactions.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,23 +23,23 @@ public class TransactionsController {
 
 
     @PostMapping("/CashWithdraw")
-    public ResponseEntity<GlobalResponse> cashWithdraw(){
+    public ResponseEntity<GlobalResponse> cashWithdraw(@RequestBody CashWithdrawModel model){
 
-        response = service.cashWithdraw();
+        response = service.cashWithdraw(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CashDeposit")
-    public ResponseEntity<GlobalResponse> cashDeposit(){
+    public ResponseEntity<GlobalResponse> cashDeposit(@RequestBody CashDepositModel model){
 
-        response = service.cashDeposit();
+        response = service.cashDeposit(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CashTransfer")
-    public ResponseEntity<GlobalResponse> cashTransfer(){
+    public ResponseEntity<GlobalResponse> cashTransfer(@RequestBody CashTransferModel model){
 
-        response = service.cashTransfer();
+        response = service.cashTransfer(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

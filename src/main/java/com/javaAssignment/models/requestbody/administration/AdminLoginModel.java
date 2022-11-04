@@ -9,16 +9,10 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @Data
-public class AdminCreateAccount {
+public class AdminLoginModel {
 
     @NotBlank(message = "Employee ID is required.")
     int employeeID;
     @NotBlank(message = "Employee Password is required.")
-    String employeeName;
-    @NotBlank(message = "Employee Password is required.")
     String employeePassword;
-    @NotBlank(message = "Employee Password is required.")
-    String confirmPassword;
-    @NotBlank(message = "Employee Password is required.")
-    String employeeCapacity;
 }

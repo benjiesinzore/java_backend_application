@@ -5,53 +5,60 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import java.math.BigInteger;
 
 @Repository
 public interface TransactionsRepository extends JpaRepository<MyEntity, Integer> {
 
 
     @Procedure(procedureName = "sp_CustomerTransactionDetails_Withdraw")
-    public String cashWithdraw(
+    String cashWithdraw(
 
             @Param("accountNumberIN")
-            int accountNumberIN,
+            BigInteger accountNumberIN,
 
             @Param("amountIN")
-            int amountIN
+            double amountIN,
+
+            @Param("userPasswordIN")
+            String userPassword
     );
 
     @Procedure(procedureName = "sp_CustomerTransactionDetails_Deposit")
-    public String cashDeposit(
+    String cashDeposit(
 
             @Param("accountNumberIN")
-            int accountNumberIN,
+            BigInteger accountNumberIN,
 
             @Param("amountIN")
-            int amountIN
+            double amountIN
     );
 
     @Procedure(procedureName = "sp_CustomerTransaction_TransferFunds")
-    public String cashTransfer(
+    String cashTransfer(
 
             @Param("accountNumberIN")
-            int accountNumberIN,
+            BigInteger accountNumberIN,
 
             @Param("accountNumberToSendToIN")
-            int accountNumberToSendToIN,
+            BigInteger accountNumberToSendToIN,
 
             @Param("amountIN")
-            int amountIN
+            double amountIN,
+
+            @Param("userPasswordIN")
+            String userPassword
     );
 
     @Procedure(procedureName = "sp_GetAvailableBalance")
-    public String checkAvailableBalance(
+    String checkAvailableBalance(
 
             @Param("accountNumberIN")
             int accountNumberIN
     );
 
     @Procedure(procedureName = "sp_DeactivateAccount")
-    public String customerRequestDeactivateAccount(
+    String customerRequestDeactivateAccount(
 
             @Param("accountNumberIN")
             int accountNumberIN

@@ -1,5 +1,8 @@
 package com.javaAssignment.services.transactions;
 
+import com.javaAssignment.models.requestbody.transactions.CashDepositModel;
+import com.javaAssignment.models.requestbody.transactions.CashTransferModel;
+import com.javaAssignment.models.requestbody.transactions.CashWithdrawModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.transactions.TransactionsRepository;
 import org.slf4j.Logger;
@@ -23,10 +26,13 @@ public class TransactionsService {
     private final Logger logger = LoggerFactory.getLogger(TransactionsService.class);
 
 
-    public GlobalResponse cashDeposit(){
+    public GlobalResponse cashDeposit(CashDepositModel model){
         String res = "";
         try {
-            res = repository.cashDeposit(11,11);
+            res = repository.cashDeposit(
+                    model.getAccountNumber(),
+                    model.getAmount()
+            );
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
@@ -42,10 +48,14 @@ public class TransactionsService {
     }
 
 
-    public GlobalResponse cashWithdraw(){
+    public GlobalResponse cashWithdraw(CashWithdrawModel model){
         String res = "";
         try {
-            res = repository.cashWithdraw(11,11);
+            res = repository.cashWithdraw(
+                    model.getAccountNumber(),
+                    model.getAmount(),
+                    model.getUserPassword()
+            );
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
@@ -61,10 +71,15 @@ public class TransactionsService {
     }
 
 
-    public GlobalResponse cashTransfer(){
+    public GlobalResponse cashTransfer(CashTransferModel model){
         String res = "";
         try {
-            res = repository.cashTransfer(11,11, 11);
+            res = repository.cashTransfer(
+                    model.getAccountNumber(),
+                    model.getAccountNumberToSendTo(),
+                    model.getAmount(),
+                    model.getUserPassword()
+            );
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();

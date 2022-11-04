@@ -1,8 +1,8 @@
 package com.javaAssignment.services.security;
 
-import com.javaAssignment.models.requestbody.security.CustomerLogin;
-import com.javaAssignment.models.requestbody.security.CustomerReg;
-import com.javaAssignment.models.requestbody.security.CustomerRequestPinChange;
+import com.javaAssignment.models.requestbody.security.CustomerLoginModel;
+import com.javaAssignment.models.requestbody.security.CustomerRegModel;
+import com.javaAssignment.models.requestbody.security.CustomerRequestPinChangeModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.security.SecurityRepository;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public class SecurityService {
 
     private final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
-    public GlobalResponse customerRegistration(CustomerReg model){
+    public GlobalResponse customerRegistration(CustomerRegModel model){
 
         String password = model.getUserPassword();
         String conPassword = model.getConfirmPassword();
@@ -64,7 +64,7 @@ public class SecurityService {
         return response;
     }
 
-    public GlobalResponse customerLogin(CustomerLogin model){
+    public GlobalResponse customerLogin(CustomerLoginModel model){
         String res;
         try {
             res = repository.customerLogin(
@@ -84,7 +84,7 @@ public class SecurityService {
         return response;
     }
 
-    public GlobalResponse customerRequestPinChange(CustomerRequestPinChange model){
+    public GlobalResponse customerRequestPinChange(CustomerRequestPinChangeModel model){
         String res;
         try {
             res = repository.customerRequestPinChange(

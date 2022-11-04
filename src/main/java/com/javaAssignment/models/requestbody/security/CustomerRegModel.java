@@ -9,12 +9,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
 @Data
-public class CustomerReg {
+public class CustomerRegModel {
 
     @NotBlank(message = "User ID is required.")
     int userID;

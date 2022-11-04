@@ -1,7 +1,9 @@
 package com.javaAssignment.controllers.administration;
 
-import com.javaAssignment.models.requestbody.administration.AdminCreateAccount;
-import com.javaAssignment.models.requestbody.administration.AdminLogin;
+import com.javaAssignment.models.requestbody.administration.AdminCreateAccountModel;
+import com.javaAssignment.models.requestbody.administration.AdminLoginModel;
+import com.javaAssignment.models.requestbody.administration.BlockCustomerAccountModel;
+import com.javaAssignment.models.requestbody.administration.ValidateCustomerAccModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.models.responses.administration.AccValidationRemResp;
 import com.javaAssignment.services.administration.AdministratorService;
@@ -22,7 +24,7 @@ public class AdministratorController {
     private GlobalResponse response = new GlobalResponse();
 
     @PostMapping("/AdminCreateAccount")
-    public ResponseEntity<GlobalResponse> adminCreateAccount(@RequestBody AdminCreateAccount model){
+    public ResponseEntity<GlobalResponse> adminCreateAccount(@RequestBody AdminCreateAccountModel model){
 
         response = service.adminCreateAccount(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -30,34 +32,33 @@ public class AdministratorController {
 
 
     @RequestMapping(value = "/AdminLogin", method = RequestMethod.POST)
-    public ResponseEntity<GlobalResponse> adminLogin(@RequestBody AdminLogin model){
+    public ResponseEntity<GlobalResponse> adminLogin(@RequestBody AdminLoginModel model){
 
         response = service.adminLogin(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/ValidateCustomerAccount")
-    public ResponseEntity<GlobalResponse> validateCustomerAccount(){
+    public ResponseEntity<GlobalResponse> validateCustomerAccount(@RequestBody ValidateCustomerAccModel model){
 
-        response = service.validateCustomerAccount();
+        response = service.validateCustomerAccount(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/BlockCustomerAccount")
-    public ResponseEntity<GlobalResponse> blockCustomerAccount(){
+    public ResponseEntity<GlobalResponse> blockCustomerAccount(@RequestBody BlockCustomerAccountModel model){
 
-        response = service.blockCustomerAccount();
+        response = service.blockCustomerAccount(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
-    @PostMapping("/TestSqlMapping")
-    public ResponseEntity<AccValidationRemResp> getTestSqlMapping(){
+    @GetMapping("/AccountValidationReinder")
+    public ResponseEntity<AccValidationRemResp> accountValidationReinder(){
 
         AccValidationRemResp res;
-        res = service.getTestSqlMapping();
+        res = service.accountValidationReinder();
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
-
 
 }
