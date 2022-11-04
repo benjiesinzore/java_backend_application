@@ -3,6 +3,7 @@ package com.javaAssignment.controllers.transactions;
 import com.javaAssignment.models.requestbody.transactions.CashDepositModel;
 import com.javaAssignment.models.requestbody.transactions.CashTransferModel;
 import com.javaAssignment.models.requestbody.transactions.CashWithdrawModel;
+import com.javaAssignment.models.requestbody.transactions.CheckAvailableBalanceModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.transactions.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +45,11 @@ public class TransactionsController {
     }
 
     @PostMapping(value = "/CheckAvailableBalance")
-    public ResponseEntity<GlobalResponse> checkAvailableBalance(){
+    public ResponseEntity<GlobalResponse> checkAvailableBalance(@RequestBody CheckAvailableBalanceModel model){
 
-        response = service.checkAvailableBalance();
+        response = service.checkAvailableBalance(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/CustomerRequestDeactivateAccount")
-    public ResponseEntity<GlobalResponse> customerRequestDeactivateAccount(){
-
-        response = service.customerRequestDeactivateAccount();
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
 
 }

@@ -54,14 +54,11 @@ public interface TransactionsRepository extends JpaRepository<MyEntity, Integer>
     String checkAvailableBalance(
 
             @Param("accountNumberIN")
-            int accountNumberIN
+            BigInteger accountNumberIN,
+
+            @Param("userPasswordIN")
+            String userPassword
     );
 
-    @Procedure(procedureName = "sp_DeactivateAccount")
-    String customerRequestDeactivateAccount(
-
-            @Param("accountNumberIN")
-            int accountNumberIN
-    );
 
 }

@@ -3,6 +3,7 @@ package com.javaAssignment.services.transactions;
 import com.javaAssignment.models.requestbody.transactions.CashDepositModel;
 import com.javaAssignment.models.requestbody.transactions.CashTransferModel;
 import com.javaAssignment.models.requestbody.transactions.CashWithdrawModel;
+import com.javaAssignment.models.requestbody.transactions.CheckAvailableBalanceModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.transactions.TransactionsRepository;
 import org.slf4j.Logger;
@@ -21,9 +22,9 @@ public class TransactionsService {
         this.repository = repository;
     }
 
-    private final GlobalResponse response = new GlobalResponse();
+    protected GlobalResponse response = new GlobalResponse();
 
-    private final Logger logger = LoggerFactory.getLogger(TransactionsService.class);
+    protected Logger logger = LoggerFactory.getLogger(TransactionsService.class);
 
 
     public GlobalResponse cashDeposit(CashDepositModel model){
@@ -95,10 +96,14 @@ public class TransactionsService {
     }
 
 
-    public GlobalResponse checkAvailableBalance(){
+    public GlobalResponse checkAvailableBalance(CheckAvailableBalanceModel model){
         String res = "";
         try {
-            res = repository.checkAvailableBalance(11);
+            res = repository.checkAvailableBalance(
+                    model.getAccountNumber(),
+                    model.getUserPassword()
+            );
+
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
@@ -113,23 +118,7 @@ public class TransactionsService {
         return response;
     }
 
-    public GlobalResponse customerRequestDeactivateAccount(){
-        String res = "";
-        try {
-            res = repository.customerRequestDeactivateAccount(11);
-            response.setMessage(res);
-        } catch (Exception ee){
-            String error = ee.getMessage();
-            logger.error(error);
-            logger.info("Cash Deposit Endpoint : Transaction Controller");
-            response.setStatus(500);
-            response.setError(error);
-            response.setMessage("Internal Server Error.");
 
-        }
-
-        return response;
-    }
 }
 
 
