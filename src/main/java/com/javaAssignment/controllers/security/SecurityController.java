@@ -1,15 +1,14 @@
 package com.javaAssignment.controllers.security;
 
+import com.javaAssignment.models.requestbody.security.CustomerLogin;
 import com.javaAssignment.models.requestbody.security.CustomerReg;
+import com.javaAssignment.models.requestbody.security.CustomerRequestPinChange;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -32,17 +31,18 @@ public class SecurityController {
     }
 
     @PostMapping("/CustomerLogin")
-    public ResponseEntity<GlobalResponse> customerLogin(){
+    public ResponseEntity<GlobalResponse> customerLogin(@RequestBody CustomerLogin model){
 
-        response = service.customerLogin();
+        response = service.customerLogin(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CustomerRequestPinChange")
-    public ResponseEntity<GlobalResponse> customerRequestPinChange(){
+    public ResponseEntity<GlobalResponse> customerRequestPinChange(@RequestBody CustomerRequestPinChange model){
 
-        response = service.customerRequestPinChange();
+        response = service.customerRequestPinChange(model);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 }

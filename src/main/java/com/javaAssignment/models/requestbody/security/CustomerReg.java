@@ -27,13 +27,6 @@ public class CustomerReg {
     @NotBlank(message = "User confirmation password is required.")
     String confirmPassword;
 
-    public CustomerReg(int userID, String userName, String userEmailAddress, String userPassword, String confirmPassword) {
-        this.userID = userID;
-        this.userName = userName;
-        this.userEmailAddress = userEmailAddress;
-        this.userPassword = userPassword;
-        this.confirmPassword = confirmPassword;
-    }
 }
 
 

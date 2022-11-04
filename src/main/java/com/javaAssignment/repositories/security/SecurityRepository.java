@@ -29,7 +29,7 @@ public interface SecurityRepository extends JpaRepository<MyEntity, Integer> {
     String customerLogin(
 
             @Param("accountNumberIN")
-            String accountNumberIN,
+            int accountNumberIN,
 
             @Param("userPasswordIN")
             String userPasswordIN

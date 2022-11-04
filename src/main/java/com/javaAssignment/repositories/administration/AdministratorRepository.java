@@ -32,7 +32,7 @@ public interface AdministratorRepository extends JpaRepository<AccValidationRemM
     String adminLogin(
 
             @Param("employeeIDIN")
-            String employeeIDIN,
+            int employeeIDIN,
 
             @Param("employeePasswordIN")
             String employeePasswordIN

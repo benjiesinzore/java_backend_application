@@ -1,5 +1,7 @@
 package com.javaAssignment.services.administration;
 
+import com.javaAssignment.models.requestbody.administration.AdminCreateAccount;
+import com.javaAssignment.models.requestbody.administration.AdminLogin;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.entity.AccValidationRemModelData;
 import com.javaAssignment.models.responses.administration.AccValidationRemResp;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 
 @Transactional
@@ -26,32 +29,52 @@ public class AdministratorService {
     private final Logger logger = LoggerFactory.getLogger(AdministratorService.class);
 
 
-    public GlobalResponse adminCreateAccount(){
-        String res;
-        try {
+    public GlobalResponse adminCreateAccount(AdminCreateAccount model){
 
-            res = repository.adminCreateAccount(
-                    33, "", "", "");
-            response.setMessage(res);
-        } catch (Exception ee){
-            String error = ee.getMessage();
+        String password = model.getEmployeePassword();
+        String confirmPassword = model.getConfirmPassword();
+        if (Objects.equals(password, confirmPassword)){
 
-            logger.error(error);
-            logger.info("Create Admin Endpoint : Administration Controller");
-            response.setStatus(500);
-            response.setError(error);
-            response.setMessage("Internal Server Error.");
+            try {
 
+                String res;
+                res = repository.adminCreateAccount(
+                        model.getEmployeeID(),
+                        model.getEmployeePassword(),
+                        model.getEmployeeName(),
+                        model.getEmployeeCapacity());
+                response.setMessage(res);
+
+            } catch (Exception ee){
+                String error = ee.getMessage();
+
+                logger.error(error);
+                logger.info("Create Admin Endpoint : Administration Controller");
+                response.setStatus(500);
+                response.setError(error);
+                response.setMessage("Internal Server Error.");
+
+            }
+
+        } else {
+
+            response.setStatus(401);
+            response.setError("Bad request.");
+            response.setMessage("Please ensure the passwords match.");
         }
+
+
 
         return response;
     }
 
 
-    public GlobalResponse adminLogin(){
+    public GlobalResponse adminLogin(AdminLogin model){
         String res;
         try {
-            res = repository.adminLogin("22", "");
+            res = repository.adminLogin(
+                    model.getEmployeeID(),
+                    model.getEmployeePassword());
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();

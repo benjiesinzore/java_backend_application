@@ -1,6 +1,8 @@
 package com.javaAssignment.services.security;
 
+import com.javaAssignment.models.requestbody.security.CustomerLogin;
 import com.javaAssignment.models.requestbody.security.CustomerReg;
+import com.javaAssignment.models.requestbody.security.CustomerRequestPinChange;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.security.SecurityRepository;
 import org.slf4j.Logger;
@@ -62,10 +64,13 @@ public class SecurityService {
         return response;
     }
 
-    public GlobalResponse customerLogin(){
+    public GlobalResponse customerLogin(CustomerLogin model){
         String res;
         try {
-            res = repository.customerLogin("100100123","");
+            res = repository.customerLogin(
+                    model.getUserAccountNumber(),
+                    model.getUserPassword());
+
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
@@ -79,11 +84,15 @@ public class SecurityService {
         return response;
     }
 
-    public GlobalResponse customerRequestPinChange(){
+    public GlobalResponse customerRequestPinChange(CustomerRequestPinChange model){
         String res;
         try {
-            res = repository.customerRequestPinChange(123,"","",
-                    "");
+            res = repository.customerRequestPinChange(
+                    model.getUserAccountNumber(),
+                    model.getUserName(),
+                    model.getUserPassword(),
+                    model.getRequestDate());
+
             response.setMessage(res);
         } catch (Exception ee){
             String error = ee.getMessage();
