@@ -1,11 +1,12 @@
 package com.javaAssignment.repositories.administration;
 
-import com.javaAssignment.models.responses.administration.AccValidationRemModel;
-import com.javaAssignment.models.responses.administration.AccValidationRemModelData;
+import com.javaAssignment.entity.AccValidationRemModel;
+import com.javaAssignment.entity.AccValidationRemModelData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository
@@ -65,6 +66,8 @@ public interface AdministratorRepository extends JpaRepository<AccValidationRemM
             String blockedByIN
 
     );
+
+    @Procedure(name = "getTestSqlMapping")
 
     List<AccValidationRemModelData> getTestSqlMapping();
 

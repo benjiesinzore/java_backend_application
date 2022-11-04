@@ -1,14 +1,13 @@
 package com.javaAssignment.controllers.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
-import com.javaAssignment.models.responses.administration.AccValidationRemModelData;
+import com.javaAssignment.models.responses.administration.AccValidationRemResp;
 import com.javaAssignment.services.administration.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @RestController()
 @RequestMapping("/BankingTest")
@@ -54,11 +53,11 @@ public class AdministratorController {
 
 
     @PostMapping("/TestSqlMapping")
-    public List<AccValidationRemModelData> getTestSqlMapping(){
+    public AccValidationRemResp getTestSqlMapping(){
 
-        List<AccValidationRemModelData> data;
-        data = service.getTestSqlMapping();
-        return data;
+        AccValidationRemResp res;
+        res = service.getTestSqlMapping();
+        return res;
     }
 
 

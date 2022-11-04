@@ -1,4 +1,4 @@
-package com.javaAssignment.models.responses.administration;
+package com.javaAssignment.entity;
 
 import lombok.*;
 import javax.persistence.Entity;

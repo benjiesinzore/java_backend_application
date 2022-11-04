@@ -1,14 +1,14 @@
 package com.javaAssignment.services.administration;
 
 import com.javaAssignment.models.responses.GlobalResponse;
-import com.javaAssignment.models.responses.administration.AccValidationRemModelData;
+import com.javaAssignment.entity.AccValidationRemModelData;
+import com.javaAssignment.models.responses.administration.AccValidationRemResp;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -105,19 +105,22 @@ public class AdministratorService {
         return response;
     }
 
-    public List<AccValidationRemModelData> getTestSqlMapping(){
+    public AccValidationRemResp getTestSqlMapping(){
 
-        List<AccValidationRemModelData> data = new ArrayList<>();
+        AccValidationRemResp res = new AccValidationRemResp();
+        List<AccValidationRemModelData> data;
         try {
             data = repository.getTestSqlMapping();
-            logger.info(data.toString());
+            res.setData(data);
         } catch (Exception ee){
 
             String error = ee.getMessage();
             logger.error(error);
             logger.info("Test SQL Mapping Endpoint : Administration Controller");
+            res.setStatus(500);
+            res.setError(error);
         }
-        return data;
+        return res;
     }
 
 }
