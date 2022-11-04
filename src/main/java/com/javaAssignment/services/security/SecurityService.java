@@ -34,16 +34,21 @@ public class SecurityService {
 
             String res;
             try {
-                res = repository.customerRegistration(123,"","","");
+                res = repository.customerRegistration(
+                        model.getUserID(),
+                        model.getUserName(),
+                        model.getUserPassword(),
+                        model.getUserEmailAddress());
+
                 response.setMessage(res);
             } catch (Exception ee){
+
                 String error = ee.getMessage();
                 logger.error(error);
                 logger.info("Customer Registration Endpoint : Security Controller");
                 response.setStatus(500);
                 response.setError(error);
                 response.setMessage("Internal Server Error.");
-
             }
         } else {
 

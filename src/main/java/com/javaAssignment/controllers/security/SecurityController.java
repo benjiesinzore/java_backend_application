@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Objects;
 
 @RestController()
-@RequestMapping("/BankingTest")
+@RequestMapping(value = "/BankingTest")
 public class SecurityController {
 
     @Autowired
@@ -24,25 +24,25 @@ public class SecurityController {
     }
     private GlobalResponse response = new GlobalResponse();
 
-    @PostMapping("/CustomerRegistration")
+    @PostMapping(value = "/CustomerRegistration")
     public ResponseEntity<GlobalResponse> customerRegistration(@RequestBody CustomerReg model){
 
         response = service.customerRegistration(model);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CustomerLogin")
-    public GlobalResponse customerLogin(){
+    public ResponseEntity<GlobalResponse> customerLogin(){
 
         response = service.customerLogin();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CustomerRequestPinChange")
-    public GlobalResponse customerRequestPinChange(){
+    public ResponseEntity<GlobalResponse> customerRequestPinChange(){
 
         response = service.customerRequestPinChange();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

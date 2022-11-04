@@ -3,6 +3,8 @@ package com.javaAssignment.controllers.transactions;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.transactions.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,38 +19,38 @@ public class TransactionsController {
 
 
     @PostMapping("/CashWithdraw")
-    public GlobalResponse cashWithdraw(){
+    public ResponseEntity<GlobalResponse> cashWithdraw(){
 
         response = service.cashWithdraw();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CashDeposit")
-    public GlobalResponse cashDeposit(){
+    public ResponseEntity<GlobalResponse> cashDeposit(){
 
         response = service.cashDeposit();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CashTransfer")
-    public GlobalResponse cashTransfer(){
+    public ResponseEntity<GlobalResponse> cashTransfer(){
 
         response = service.cashTransfer();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/CheckAvailableBalance")
-    public GlobalResponse checkAvailableBalance(){
+    @PostMapping(value = "/CheckAvailableBalance")
+    public ResponseEntity<GlobalResponse> checkAvailableBalance(){
 
         response = service.checkAvailableBalance();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/CustomerRequestDeactivateAccount")
-    public GlobalResponse customerRequestDeactivateAccount(){
+    public ResponseEntity<GlobalResponse> customerRequestDeactivateAccount(){
 
         response = service.customerRequestDeactivateAccount();
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }
