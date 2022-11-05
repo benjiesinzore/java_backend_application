@@ -6,9 +6,14 @@ import com.javaAssignment.models.requestbody.security.CustomerRequestPinChangeMo
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 @RestController()
 @RequestMapping(value = "/BankingTest")
@@ -16,30 +21,42 @@ public class SecurityController {
 
     @Autowired
     private final SecurityService service;
-    public SecurityController(SecurityService service) {
+    private SecurityController(SecurityService service) {
         this.service = service;
     }
-    private GlobalResponse response = new GlobalResponse();
+    protected ResponseEntity<GlobalResponse> response;
 
     @PostMapping(value = "/CustomerRegistration")
-    public ResponseEntity<GlobalResponse> customerRegistration(@RequestBody CustomerRegModel model){
+    public ResponseEntity<GlobalResponse> customerRegistration(
+            @RequestBody CustomerRegModel model){
 
         response = service.customerRegistration(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
     @PostMapping("/CustomerLogin")
-    public ResponseEntity<GlobalResponse> customerLogin(@RequestBody CustomerLoginModel model){
+    public ResponseEntity<GlobalResponse> customerLogin(
+            @RequestBody CustomerLoginModel model){
 
         response = service.customerLogin(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
     @PostMapping("/CustomerRequestPinChange")
-    public ResponseEntity<GlobalResponse> customerRequestPinChange(@RequestBody CustomerRequestPinChangeModel model){
+    public ResponseEntity<GlobalResponse> customerRequestPinChange(
+            @RequestBody CustomerRequestPinChangeModel model){
 
         response = service.customerRequestPinChange(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
+    }
+
+
+    @PostMapping("/GetSession")
+    public String GetSession(){
+        String ss;
+
+        ss = service.setSession();
+        return ss;
     }
 
 

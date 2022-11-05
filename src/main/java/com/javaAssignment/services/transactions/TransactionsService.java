@@ -9,6 +9,8 @@ import com.javaAssignment.repositories.transactions.TransactionsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,24 +19,27 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransactionsService {
 
     @Autowired
-    private final TransactionsRepository repository;
+    protected TransactionsRepository repository;
     public TransactionsService(TransactionsRepository repository) {
         this.repository = repository;
     }
 
-    protected GlobalResponse response = new GlobalResponse();
-
-    protected Logger logger = LoggerFactory.getLogger(TransactionsService.class);
+    Logger logger = LoggerFactory.getLogger(TransactionsService.class);
 
 
-    public GlobalResponse cashDeposit(CashDepositModel model){
-        String res = "";
+    public ResponseEntity<GlobalResponse> cashDeposit(CashDepositModel model){
+
+        GlobalResponse response = new GlobalResponse();
+        String res;
         try {
             res = repository.cashDeposit(
                     model.getAccountNumber(),
                     model.getAmount()
             );
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -43,14 +48,18 @@ public class TransactionsService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
+
         }
 
-        return response;
+
     }
 
 
-    public GlobalResponse cashWithdraw(CashWithdrawModel model){
-        String res = "";
+    public ResponseEntity<GlobalResponse> cashWithdraw(CashWithdrawModel model){
+
+        GlobalResponse response = new GlobalResponse();
+        String res;
         try {
             res = repository.cashWithdraw(
                     model.getAccountNumber(),
@@ -58,6 +67,9 @@ public class TransactionsService {
                     model.getUserPassword()
             );
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -66,14 +78,17 @@ public class TransactionsService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
+
         }
 
-        return response;
     }
 
 
-    public GlobalResponse cashTransfer(CashTransferModel model){
-        String res = "";
+    public ResponseEntity<GlobalResponse> cashTransfer(CashTransferModel model){
+
+        GlobalResponse response = new GlobalResponse();
+        String res;
         try {
             res = repository.cashTransfer(
                     model.getAccountNumber(),
@@ -82,6 +97,9 @@ public class TransactionsService {
                     model.getUserPassword()
             );
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -90,14 +108,17 @@ public class TransactionsService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
+
         }
 
-        return response;
     }
 
 
-    public GlobalResponse checkAvailableBalance(CheckAvailableBalanceModel model){
-        String res = "";
+    public ResponseEntity<GlobalResponse> checkAvailableBalance(CheckAvailableBalanceModel model){
+
+        GlobalResponse response = new GlobalResponse();
+        String res;
         try {
             res = repository.checkAvailableBalance(
                     model.getAccountNumber(),
@@ -105,7 +126,11 @@ public class TransactionsService {
             );
 
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
         } catch (Exception ee){
+
             String error = ee.getMessage();
             logger.error(error);
             logger.info("Cash Deposit Endpoint : Transaction Controller");
@@ -113,11 +138,11 @@ public class TransactionsService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
+
         }
 
-        return response;
     }
-
 
 }
 

@@ -8,7 +8,6 @@ import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.models.responses.administration.AccValidationRemResp;
 import com.javaAssignment.services.administration.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +20,13 @@ public class AdministratorController {
     public AdministratorController(AdministratorService service) {
         this.service = service;
     }
-    private GlobalResponse response = new GlobalResponse();
+    protected ResponseEntity<GlobalResponse> response;
 
     @PostMapping("/AdminCreateAccount")
     public ResponseEntity<GlobalResponse> adminCreateAccount(@RequestBody AdminCreateAccountModel model){
 
         response = service.adminCreateAccount(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
 
@@ -35,30 +34,30 @@ public class AdministratorController {
     public ResponseEntity<GlobalResponse> adminLogin(@RequestBody AdminLoginModel model){
 
         response = service.adminLogin(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
     @PostMapping("/ValidateCustomerAccount")
     public ResponseEntity<GlobalResponse> validateCustomerAccount(@RequestBody ValidateCustomerAccModel model){
 
         response = service.validateCustomerAccount(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
     @PostMapping("/BlockCustomerAccount")
     public ResponseEntity<GlobalResponse> blockCustomerAccount(@RequestBody BlockCustomerAccountModel model){
 
         response = service.blockCustomerAccount(model);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return response;
     }
 
 
     @GetMapping("/AccountValidationReinder")
     public ResponseEntity<AccValidationRemResp> accountValidationReinder(){
 
-        AccValidationRemResp res;
+        ResponseEntity<AccValidationRemResp> res;
         res = service.accountValidationReinder();
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        return res;
     }
 
 }

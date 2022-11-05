@@ -11,6 +11,8 @@ import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -26,13 +28,12 @@ public class AdministratorService {
     public AdministratorService(AdministratorRepository repository) {
         this.repository = repository;
     }
-
-    private final GlobalResponse response = new GlobalResponse();
-    private final Logger logger = LoggerFactory.getLogger(AdministratorService.class);
+    Logger logger = LoggerFactory.getLogger(AdministratorService.class);
 
 
-    public GlobalResponse adminCreateAccount(AdminCreateAccountModel model){
+    public ResponseEntity<GlobalResponse> adminCreateAccount(AdminCreateAccountModel model){
 
+        GlobalResponse response = new GlobalResponse();
         String password = model.getEmployeePassword();
         String confirmPassword = model.getConfirmPassword();
         if (Objects.equals(password, confirmPassword)){
@@ -47,6 +48,8 @@ public class AdministratorService {
                         model.getEmployeeCapacity());
                 response.setMessage(res);
 
+                return new ResponseEntity<>(response, HttpStatus.OK);
+
             } catch (Exception ee){
                 String error = ee.getMessage();
 
@@ -56,28 +59,32 @@ public class AdministratorService {
                 response.setError(error);
                 response.setMessage("Internal Server Error.");
 
+                return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
             }
 
         } else {
 
-            response.setStatus(401);
+            response.setStatus(400);
             response.setError("Bad request.");
             response.setMessage("Please ensure the passwords match.");
+
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-
-
-        return response;
     }
 
 
-    public GlobalResponse adminLogin(AdminLoginModel model){
+    public ResponseEntity<GlobalResponse> adminLogin(AdminLoginModel model){
+
+        GlobalResponse response = new GlobalResponse();
         String res;
         try {
             res = repository.adminLogin(
                     model.getEmployeeID(),
                     model.getEmployeePassword());
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -86,18 +93,22 @@ public class AdministratorService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
         }
 
-        return response;
     }
 
-    public GlobalResponse validateCustomerAccount(ValidateCustomerAccModel model){
+    public ResponseEntity<GlobalResponse> validateCustomerAccount(ValidateCustomerAccModel model){
+
+        GlobalResponse response = new GlobalResponse();
         String res;
         try {
             res = repository.validateCustomerAccount(
                     model.getAccountNumber()
             );
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -106,13 +117,15 @@ public class AdministratorService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
         }
 
-        return response;
     }
 
 
-    public GlobalResponse blockCustomerAccount(BlockCustomerAccountModel model){
+    public ResponseEntity<GlobalResponse> blockCustomerAccount(BlockCustomerAccountModel model){
+
+        GlobalResponse response = new GlobalResponse();
         String res;
         try {
             res = repository.blockCustomerAccount(
@@ -123,6 +136,8 @@ public class AdministratorService {
             );
 
             response.setMessage(res);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception ee){
             String error = ee.getMessage();
             logger.error(error);
@@ -131,18 +146,20 @@ public class AdministratorService {
             response.setError(error);
             response.setMessage("Internal Server Error.");
 
+            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
+
         }
 
-        return response;
     }
 
-    public AccValidationRemResp accountValidationReinder(){
+    public ResponseEntity<AccValidationRemResp> accountValidationReinder(){
 
         AccValidationRemResp res = new AccValidationRemResp();
         List<AccValidationRemModelData> data;
         try {
             data = repository.accountValidationReinder();
             res.setData(data);
+            return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception ee){
 
             String error = ee.getMessage();
@@ -150,8 +167,8 @@ public class AdministratorService {
             logger.info("Test SQL Mapping Endpoint : Administration Controller");
             res.setStatus(500);
             res.setError(error);
+            return new ResponseEntity<>(res, HttpStatus.REQUEST_TIMEOUT);
         }
-        return res;
     }
 
 }
