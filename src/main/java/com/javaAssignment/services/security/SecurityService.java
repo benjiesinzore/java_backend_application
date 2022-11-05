@@ -5,26 +5,13 @@ import com.javaAssignment.models.requestbody.security.CustomerRegModel;
 import com.javaAssignment.models.requestbody.security.CustomerRequestPinChangeModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.security.SecurityRepository;
-import org.apache.catalina.session.StandardSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
-import java.time.Duration;
-import java.util.Enumeration;
 import java.util.Objects;
 
 
@@ -142,19 +129,4 @@ public class SecurityService {
 
     }
 
-    public String setSession(){
-        String ss = "Hello";
-
-
-        try {
-            HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder
-                    .getRequestAttributes())).getRequest();
-//            HttpSession session = request.getSession(true);
-//            session.setAttribute("Cry Love", "hell");
-        } catch (Exception ee){
-            ss = ee.getMessage();
-        }
-
-        return ss;
-    }
 }

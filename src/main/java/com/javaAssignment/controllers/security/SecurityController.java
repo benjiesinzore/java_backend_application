@@ -8,12 +8,6 @@ import com.javaAssignment.services.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Objects;
 
 @RestController()
 @RequestMapping(value = "/BankingTest")
@@ -48,15 +42,6 @@ public class SecurityController {
 
         response = service.customerRequestPinChange(model);
         return response;
-    }
-
-
-    @PostMapping("/GetSession")
-    public String GetSession(){
-        String ss;
-
-        ss = service.setSession();
-        return ss;
     }
 
 
