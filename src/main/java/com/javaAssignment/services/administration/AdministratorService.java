@@ -1,11 +1,10 @@
 package com.javaAssignment.services.administration;
 
+import com.javaAssignment.entity.AccValidationRemModelData;
 import com.javaAssignment.models.requestbody.administration.AdminCreateAccountModel;
 import com.javaAssignment.models.requestbody.administration.AdminLoginModel;
-import com.javaAssignment.models.requestbody.administration.BlockCustomerAccountModel;
 import com.javaAssignment.models.requestbody.administration.ValidateCustomerAccModel;
 import com.javaAssignment.models.responses.GlobalResponse;
-import com.javaAssignment.entity.AccValidationRemModelData;
 import com.javaAssignment.models.responses.administration.AccValidationRemResp;
 import com.javaAssignment.repositories.administration.AdministratorRepository;
 import org.slf4j.Logger;
@@ -15,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -122,35 +122,6 @@ public class AdministratorService {
 
     }
 
-
-    public ResponseEntity<GlobalResponse> blockCustomerAccount(BlockCustomerAccountModel model){
-
-        GlobalResponse response = new GlobalResponse();
-        String res;
-        try {
-            res = repository.blockCustomerAccount(
-                    model.getAccountNumber(),
-                    model.getReasonForBlock(),
-                    model.getDateInitiated(),
-                    model.getBlockedBy()
-            );
-
-            response.setMessage(res);
-
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception ee){
-            String error = ee.getMessage();
-            logger.error(error);
-            logger.info("Block Customer Account Endpoint : Administration Controller");
-            response.setStatus(500);
-            response.setError(error);
-            response.setMessage("Internal Server Error.");
-
-            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
-
-        }
-
-    }
 
     public ResponseEntity<AccValidationRemResp> accountValidationReinder(){
 

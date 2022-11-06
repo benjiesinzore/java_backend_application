@@ -2,7 +2,6 @@ package com.javaAssignment.services.security;
 
 import com.javaAssignment.models.requestbody.security.CustomerLoginModel;
 import com.javaAssignment.models.requestbody.security.CustomerRegModel;
-import com.javaAssignment.models.requestbody.security.CustomerRequestPinChangeModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.repositories.security.SecurityRepository;
 import org.slf4j.Logger;
@@ -12,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Objects;
 
 
@@ -99,34 +99,5 @@ public class SecurityService {
 
     }
 
-    public ResponseEntity<GlobalResponse> customerRequestPinChange(
-            CustomerRequestPinChangeModel model){
-
-        GlobalResponse response = new GlobalResponse();
-        String res;
-        try {
-            res = repository.customerRequestPinChange(
-                    model.getUserAccountNumber(),
-                    model.getUserName(),
-                    model.getUserPassword(),
-                    model.getRequestDate());
-
-            response.setMessage(res);
-
-            return new ResponseEntity<>(response, HttpStatus.OK);
-
-        } catch (Exception ee){
-            String error = ee.getMessage();
-            logger.error(error);
-            logger.info("Customer Request PIN Change Endpoint : Security Controller");
-            response.setStatus(500);
-            response.setError(error);
-            response.setMessage("Internal Server Error.");
-
-            return new ResponseEntity<>(response, HttpStatus.REQUEST_TIMEOUT);
-
-        }
-
-    }
 
 }

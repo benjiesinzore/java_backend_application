@@ -4,15 +4,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
+import java.math.BigInteger;
 
 @Getter
 @Setter
 @Data
 public class AdminLoginModel {
 
-    @NotBlank(message = "Employee ID is required.")
-    int employeeID;
-    @NotBlank(message = "Employee Password is required.")
+    BigInteger employeeID;
     String employeePassword;
 }

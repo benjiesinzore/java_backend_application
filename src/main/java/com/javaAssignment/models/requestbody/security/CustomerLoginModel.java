@@ -4,20 +4,14 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
+import java.math.BigInteger;
 
 @Getter
 @Setter
 @Data
 public class CustomerLoginModel {
 
-    @NotBlank(message = "User Account Number is required.")
-    int userAccountNumber;
-    @NotBlank(message = "User password is required.")
+    BigInteger userAccountNumber;
     String userPassword;
 
-    public CustomerLoginModel(int userAccountNumber, String userPassword) {
-        this.userAccountNumber = userAccountNumber;
-        this.userPassword = userPassword;
-    }
 }

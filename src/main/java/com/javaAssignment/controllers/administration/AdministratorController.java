@@ -2,7 +2,6 @@ package com.javaAssignment.controllers.administration;
 
 import com.javaAssignment.models.requestbody.administration.AdminCreateAccountModel;
 import com.javaAssignment.models.requestbody.administration.AdminLoginModel;
-import com.javaAssignment.models.requestbody.administration.BlockCustomerAccountModel;
 import com.javaAssignment.models.requestbody.administration.ValidateCustomerAccModel;
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.models.responses.administration.AccValidationRemResp;
@@ -30,7 +29,7 @@ public class AdministratorController {
     }
 
 
-    @RequestMapping(value = "/AdminLogin", method = RequestMethod.POST)
+    @PostMapping("/AdminLogin")
     public ResponseEntity<GlobalResponse> adminLogin(@RequestBody AdminLoginModel model){
 
         response = service.adminLogin(model);
@@ -41,13 +40,6 @@ public class AdministratorController {
     public ResponseEntity<GlobalResponse> validateCustomerAccount(@RequestBody ValidateCustomerAccModel model){
 
         response = service.validateCustomerAccount(model);
-        return response;
-    }
-
-    @PostMapping("/BlockCustomerAccount")
-    public ResponseEntity<GlobalResponse> blockCustomerAccount(@RequestBody BlockCustomerAccountModel model){
-
-        response = service.blockCustomerAccount(model);
         return response;
     }
 

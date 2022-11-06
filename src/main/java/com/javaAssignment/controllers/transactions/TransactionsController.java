@@ -7,6 +7,7 @@ import com.javaAssignment.models.requestbody.transactions.CheckAvailableBalanceM
 import com.javaAssignment.models.responses.GlobalResponse;
 import com.javaAssignment.services.transactions.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +54,5 @@ public class TransactionsController {
         response = service.checkAvailableBalance(model);
         return response;
     }
-
 
 }

@@ -1,9 +1,9 @@
 package com.javaAssignment.models.responses.administration;
 
-import com.javaAssignment.entity.AccValidationRemModel;
 import com.javaAssignment.entity.AccValidationRemModelData;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 
